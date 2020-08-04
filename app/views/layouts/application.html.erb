@@ -18,9 +18,8 @@
 
   <body>
     <%= render partial: "layouts/layout_header" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class='container'>
+    <%= render partial: "layouts/devise_flash" %>
+    <div class='container mt-3'>
     <%= yield %>
     </div>
   </body>
