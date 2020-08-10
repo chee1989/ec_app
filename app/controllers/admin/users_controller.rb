@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  include Admin::UserHelper
+  before_action :correct_user
+
   def index
     @users = User.order(created_at: :desc)
   end
