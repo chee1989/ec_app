@@ -1,6 +1,6 @@
 class Admin::HomesController < ApplicationController
   include Admin::UserHelper
-  before_action :correct_user
+  before_action :only_admin
 
   def index
   end

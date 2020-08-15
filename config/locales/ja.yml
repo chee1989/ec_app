@@ -18,6 +18,14 @@ ja:
         admin: 管理者権限
         created_at: 登録日時
         updated_at: 更新日時
+      log:
+        id: ID
+        record_type: 記録
+        user_id: ユーザーID
+        created_at: 時間
+        updated_at: 更新日時
+        user_name: ユーザー名
+        user_email: Eメール
   date:
     abbr_day_names:
     - 日

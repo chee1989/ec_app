@@ -1,0 +1,33 @@
+<div class="row mt-5">
+<%= render partial: "layouts/admin/side_menu" %>
+<div class="col-xs-6 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="container">
+    <h1>ログ一覧</h1>
+
+    <div class="mb-3">
+      <table class="table table-hover">
+        <thead class="thead-default">
+          <tr>
+            <th><%= Log.human_attribute_name(:created_at) %></th>
+            <th><%= Log.human_attribute_name(:record_type) %></th>
+            <th><%= Log.human_attribute_name(:user_id) %></th>
+            <th><%= Log.human_attribute_name(:user_name) %></th>
+            <th><%= Log.human_attribute_name(:user_email) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @logs.each do |log| %>
+          <tr>
+            <td><%= log.created_at.strftime('%Y年%m月%d日%H時%M分') %></td>
+            <td><%= log.record_type %></td>
+            <td><%= log.user_id %></td>
+            <td><%= log.user_name %></td>
+            <td><%= log.user_email %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
