@@ -12,6 +12,13 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'pry-rails', '~> 0.3.9'
+gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

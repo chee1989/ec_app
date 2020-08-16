@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, :controllers => {
+    :sessions => 'users/sessions'
+  }
+  get 'users/edit'
+  get 'users/show'
+  root 'homes#index'
+  post '/', action: :create, controller: 'contacts'
+
+  namespace :admin do
+    resources :users
+    resources :logs
+    resources :contacts
+    root 'homes#index'
+  end
 end
