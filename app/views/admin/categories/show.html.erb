@@ -1,0 +1,24 @@
+<div class='container mt-5'>
+  <h1>カテゴリの詳細</h1>
+
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧', admin_categories_path, class: 'nav-link' %>
+  </div>
+
+  <table class='table table-hover'>
+    <tbody>
+      <tr>
+        <th><%= Category.human_attribute_name(:name) %></th>
+        <td><%= @category.name %></td>
+      </tr>
+      <tr>
+        <th><%= Category.human_attribute_name(:created_at) %></th>
+        <td><%= @category.created_at.strftime('%Y年%m月%d日') %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='float-right mr-5'>
+    <%= link_to '編集', edit_admin_category_path, class: 'btn btn-success' %>
+    <%= link_to '削除', [:admin, @category], method: :delete, data: { confirm: "ユーザー「#{@category.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+  </div>
+</div>

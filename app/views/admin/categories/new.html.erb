@@ -1,0 +1,9 @@
+<div class='container mt-5'>
+  <h1>カテゴリ登録</h1>
+
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧', admin_categories_path, class: 'nav-link' %>
+  </div>
+
+  <%= render partial: 'form', locals: {category: @category} %>
+</div>

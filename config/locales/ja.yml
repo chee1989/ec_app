@@ -35,6 +35,11 @@ ja:
         updated_at: 更新日時
         user_name: ユーザー名
         user_email: Eメール
+      category:
+        id: ID
+        name: カテゴリ名
+        created_at: 作成日時
+        updated_at: 更新日時
   date:
     abbr_day_names:
     - 日
