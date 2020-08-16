@@ -10,4 +10,5 @@ class User < ApplicationRecord
 
   # 関連
   has_many :logs
+  has_many :contacts
 end

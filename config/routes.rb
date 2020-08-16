@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   get 'users/edit'
   get 'users/show'
   root 'homes#index'
+  post '/', action: :create, controller: 'contacts'
 
   namespace :admin do
     resources :users
     resources :logs
+    resources :contacts
     root 'homes#index'
   end
 end

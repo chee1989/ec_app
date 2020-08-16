@@ -2,27 +2,29 @@
   <%= render partial: 'layouts/admin/side_menu' %>
   <div class='col-xs-6 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
     <div class='container card p-5'>
-      <h1>ログ一覧</h1>
+      <h1>問い合わせ一覧</h1>
 
       <div class='mb-3 mt-5'>
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>
-              <th><%= Log.human_attribute_name(:created_at) %></th>
-              <th><%= Log.human_attribute_name(:record_type) %></th>
+              <th><%= Log.human_attribute_name(:title) %></th>
+              <th><%= Log.human_attribute_name(:content) %></th>
               <th><%= Log.human_attribute_name(:user_id) %></th>
               <th><%= Log.human_attribute_name(:user_name) %></th>
               <th><%= Log.human_attribute_name(:user_email) %></th>
+              <th><%= Log.human_attribute_name(:created_at) %></th>
             </tr>
           </thead>
           <tbody>
-            <% @logs.each do |log| %>
+            <% @contacts.each do |contact| %>
             <tr>
-              <td><%= log.created_at.strftime('%Y年%m月%d日%H時%M分') %></td>
-              <td><%= log.record_type %></td>
-              <td><%= log.user_id %></td>
-              <td><%= log.user_name %></td>
-              <td><%= log.user_email %></td>
+              <td><%= contact.title %></td>
+              <td><%= contact.content %></td>
+              <td><%= contact.user_id %></td>
+              <td><%= contact.user_name %></td>
+              <td><%= contact.user_email %></td>
+              <td><%= contact.created_at.strftime('%Y年%m月%d日') %></td>
             </tr>
             <% end %>
           </tbody>
@@ -31,3 +33,4 @@
     </div>
   </div>
 </div>
+

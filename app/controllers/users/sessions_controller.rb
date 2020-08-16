@@ -11,14 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    Log.create!(user_id: current_user.id, record_type: "ログイン")
+    Log.create!(user_id: current_user.id, record_type: 'ログイン')
   end
 
   # DELETE /resource/sign_out
   def destroy
     user = current_user
     super
-    Log.create!(user_id: user.id, record_type: "ログアウト") if user.present?
+    Log.create!(user_id: user.id, record_type: 'ログアウト') if user.present?
   end
 
   # protected
