@@ -16,7 +16,7 @@ ja:
         nick_name: ニックネーム
         email: Eメール
         admin: 管理者権限
-        created_at: 登録日時
+        created_at: 登録日
         updated_at: 更新日時
       log:
         id: ID
@@ -31,14 +31,14 @@ ja:
         title: タイトル
         content: 内容
         user_id: ユーザーID
-        created_at: 作成日時
+        created_at: 受信日
         updated_at: 更新日時
         user_name: ユーザー名
         user_email: Eメール
       category:
         id: ID
         name: カテゴリ名
-        created_at: 作成日時
+        created_at: 作成日
         updated_at: 更新日時
       product:
         id: ID
