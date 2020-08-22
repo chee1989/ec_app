@@ -1,0 +1,32 @@
+<% if product.errors.present? %>
+  <ul id='error_explanation'>
+    <% product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: [:admin, product], local: true do |f| %>
+  <div class='form-group'>
+    <%= f.label :user_name %>
+    <%= f.select :user_id, User.all.map { |user| [user.name, user.id] }, {}, { class: 'form-control' } %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :category_name %>
+    <%= f.select :category_id, Category.all.map { |cg| [cg.name, cg.id] }, {}, { class: 'form-control' } %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :price %>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction, class: 'form-control' %>
+  </div>
+
+  <%= f.submit '登録する', class: 'btn btn-primary' %>
+<% end %>

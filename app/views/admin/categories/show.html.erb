@@ -19,6 +19,6 @@
   </table>
   <div class='float-right mr-5'>
     <%= link_to '編集', edit_admin_category_path, class: 'btn btn-success' %>
-    <%= link_to '削除', [:admin, @category], method: :delete, data: { confirm: "ユーザー「#{@category.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+    <%= link_to '削除', [:admin, @category], method: :delete, data: { confirm: "カテゴリ「#{@category.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
   </div>
 </div>

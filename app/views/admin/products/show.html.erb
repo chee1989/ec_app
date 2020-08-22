@@ -1,0 +1,40 @@
+<div class='container mt-5'>
+  <h1>商品の詳細</h1>
+
+  <div class='nav justify-content-end'>
+    <%= link_to '一覧', admin_products_path, class: 'nav-link' %>
+  </div>
+
+  <table class='table table-hover'>
+    <tbody>
+      <tr>
+        <th><%= Product.human_attribute_name(:category_name) %></th>
+        <td><%= @product.category_name %></td>
+      </tr>
+      <tr>
+        <th><%= Product.human_attribute_name(:title) %></th>
+        <td><%= @product.title %></td>
+      </tr>
+      <tr>
+        <th><%= Product.human_attribute_name(:price) %></th>
+        <td><%= @product.price %></td>
+      </tr>
+      <tr>
+        <th><%= Product.human_attribute_name(:introduction) %></th>
+        <td><%= @product.introduction %></td>
+      </tr>
+      <tr>
+        <th><%= Product.human_attribute_name(:user_name) %></th>
+        <td><%= @product.user_name %></td>
+      </tr>
+      <tr>
+        <th><%= Product.human_attribute_name(:created_at) %></th>
+        <td><%= @product.created_at.strftime('%Y年%m月%d日') %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='float-right mr-5'>
+    <%= link_to '編集', edit_admin_product_path, class: 'btn btn-success' %>
+    <%= link_to '削除', [:admin, @product], method: :delete, data: { confirm: "商品「#{@product.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+  </div>
+</div>
