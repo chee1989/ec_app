@@ -47,7 +47,7 @@ ja:
         title: 商品名
         price: 値段
         introduction: 商品説明
-        created_at: 出品日時
+        created_at: 出品日
         updated_at: 更新日時
         user: 出品者名
         category: カテゴリ名

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :logs
     resources :contacts
     resources :categories
+    resources :products
     root 'homes#index'
   end
 end
