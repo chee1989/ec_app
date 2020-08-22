@@ -40,6 +40,19 @@ ja:
         name: カテゴリ名
         created_at: 作成日時
         updated_at: 更新日時
+      product:
+        id: ID
+        user_id: ユーザーID
+        category_id: カテゴリーID
+        title: 商品名
+        price: 値段
+        introduction: 商品説明
+        created_at: 出品日時
+        updated_at: 更新日時
+        user: 出品者名
+        category: カテゴリ名
+        user_name: 出品者名
+        category_name: カテゴリ名
   date:
     abbr_day_names:
     - 日
