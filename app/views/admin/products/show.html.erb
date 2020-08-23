@@ -27,6 +27,16 @@
         <th><%= Product.human_attribute_name(:user_name) %></th>
         <td><%= @product.user_name %></td>
       </tr>
+      <% if @product.images.attached?  %>
+        <tr>
+          <th><%= Product.human_attribute_name(:image) %></th>
+          <td>
+            <% @product.images.each do |img| %>
+              <%= image_tag(img, width:200) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
       <tr>
         <th><%= Product.human_attribute_name(:created_at) %></th>
         <td><%= @product.created_at.strftime('%Y年%m月%d日') %></td>

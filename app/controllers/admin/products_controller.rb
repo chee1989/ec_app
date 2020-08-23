@@ -47,9 +47,15 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to admin_products_url, notice: "商品「#{@product.title}」を削除しました。"
+  end
+
   private
 
   def product_params
-    params.require(:product).permit(:title, :price, :introduction, :user_id, :category_id)
+    params.require(:product).permit(:title, :price, :introduction, :user_id, :category_id, images: [])
   end
 end

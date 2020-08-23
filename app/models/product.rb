@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   # 関連
   belongs_to :user
   belongs_to :category
+  has_many_attached :images
 
   # 委譲
   def user_name; user.name end

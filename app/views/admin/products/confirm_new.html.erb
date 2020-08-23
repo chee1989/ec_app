@@ -29,6 +29,11 @@
           <td><%= @product.user_name %></td>
           <%= f.hidden_field :user_id %>
         </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:image) %></th>
+          <td><%= image_tag @product.images.first if @product.images.attached? %></td>
+          <%= f.hidden_field :images, value: @product.images %>
+        </tr>
       </tbody>
     </table>
 
