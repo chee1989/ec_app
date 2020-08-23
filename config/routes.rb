@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :logs
     resources :contacts
     resources :categories
-    resources :products
+    resources :products do
+      post :confirm, action: :confirm_new, on: :new
+    end
     root 'homes#index'
   end
 end

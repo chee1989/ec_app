@@ -14,8 +14,19 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def confirm_new
+    @product = current_user.products.new(product_params)
+    render :new unless @product.valid?
+  end
+
   def create
     @product = Product.new(product_params)
+
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @product.save
       redirect_to admin_products_path, notice: "商品「#{@product.title}」を登録しました。"
     else
