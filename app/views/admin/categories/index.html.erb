@@ -18,7 +18,8 @@
               <%= f.label :name, 'カテゴリ名'%>
               <%= f.select :name, Category.all.map { |cg| [cg.name] }, { include_blank: '全て' }, { class: 'form-control' } %>
             </div>
-            <%= f.submit '検索する', class: 'btn btn-secondary'%>
+            <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
+            <%= reset_tag 'クリア', class: 'btn btn-secondary' %>
           <% end %>
         </div>
       </div>

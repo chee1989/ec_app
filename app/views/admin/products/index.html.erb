@@ -32,6 +32,7 @@
               <%= f.number_field :max_price, value: @search_params[:max_price], class: 'form-control', placeholder: '〜以下' %>
             </div>
             <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
+            <%= reset_tag 'クリア', class: 'btn btn-secondary' %>
           <% end %>
         </div>
       </div>
