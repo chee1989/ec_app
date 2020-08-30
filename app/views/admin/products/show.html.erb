@@ -32,7 +32,9 @@
           <th><%= Product.human_attribute_name(:image) %></th>
           <td>
             <% @product.images.each do |img| %>
-              <%= image_tag(img, width:200) %>
+              <%= link_to img, 'data-lightbox' => img do %>
+              <%= image_tag(img, width:150) %>
+              <% end %>
             <% end %>
           </td>
         </tr>
@@ -45,6 +47,6 @@
   </table>
   <div class='float-right mr-5'>
     <%= link_to '編集', edit_admin_product_path, class: 'btn btn-success' %>
-    <%= link_to '削除', [:admin, @product], method: :delete, data: { confirm: "商品「#{@product.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
+    <%= link_to '削除', [:admin, @product], method: :delete, data: { confirm: '商品「#{@product.title}」を削除します。よろしいですか？'}, class: 'btn btn-danger' %>
   </div>
 </div>
