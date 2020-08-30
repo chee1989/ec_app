@@ -3,7 +3,8 @@ class Admin::ProductsController < ApplicationController
   before_action :only_admin
 
   def index
-    @products = Product.order(created_at: :desc)
+    @search_params = product_search_params
+    @products = Product.search(@search_params).includes(:category)
   end
 
   def show
@@ -57,5 +58,9 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :price, :introduction, :user_id, :category_id, images: [])
+  end
+
+  def product_search_params
+    params.fetch(:search, {}).permit(:title, :min_price, :max_price, :category_id, :user_id)
   end
 end
