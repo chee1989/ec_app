@@ -4,7 +4,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @search_params = category_search_params
-    @categories = Category.search(@search_params)
+    @categories = Category.order(created_at: :desc).search(@search_params)
   end
 
   def show
