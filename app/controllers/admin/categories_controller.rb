@@ -3,7 +3,8 @@ class Admin::CategoriesController < ApplicationController
   before_action :only_admin
 
   def index
-    @categories = Category.order(created_at: :desc)
+    @search_params = category_search_params
+    @categories = Category.search(@search_params)
   end
 
   def show
@@ -46,5 +47,9 @@ class Admin::CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def category_search_params
+    params.fetch(:search, {}).permit(:name)
   end
 end

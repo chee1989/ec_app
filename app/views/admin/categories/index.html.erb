@@ -5,7 +5,22 @@
       <h1>カテゴリ一覧</h1>
     
       <div class='my-3'>
-      <%= link_to '新規登録', new_admin_category_path, class: 'btn btn-primary' %>
+        <%= link_to '新規登録', new_admin_category_path, class: 'btn btn-primary' %>
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          検索
+        </button>
+      </div>
+
+      <div class="collapse" id="collapseExample">
+        <div class='search-form my-3'>
+          <%= form_with(scope: :search, url: admin_categories_path, method: :get, local: true) do |f| %>
+            <div class='form-group'>
+              <%= f.label :name, 'カテゴリ名'%>
+              <%= f.select :name, Category.all.map { |cg| [cg.name] }, { include_blank: '全て' }, { class: 'form-control' } %>
+            </div>
+            <%= f.submit '検索する', class: 'btn btn-secondary'%>
+          <% end %>
+        </div>
       </div>
 
       <div class='mb-3'>
