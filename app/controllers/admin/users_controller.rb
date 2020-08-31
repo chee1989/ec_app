@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
   before_action :only_admin
 
   def index
-    @users = User.order(created_at: :desc)
+    @search_params = user_search_params
+    @users = User.order(created_at: :desc).search(@search_params)
   end
 
   def show
@@ -46,5 +47,9 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :nick_name, :email, :admin, :password, :password_confirmation)
+  end
+
+  def user_search_params
+    params.fetch(:search, {}).permit(:name, :nick_name, :email, :admin, :created_at_from, :created_at_to)
   end
 end
