@@ -1,0 +1,71 @@
+<div class='row mt-5'>
+  <%= render partial: 'layouts/admin/side_menu' %>
+  <div class='col-xs-6 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
+    <div class='container card p-5'>
+      <h1>商品一覧</h1>
+    
+      <div class='my-3'>
+        <%= link_to '新規登録', new_admin_product_path, class: 'btn btn-primary' %>
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          検索
+        </button>
+      </div>
+
+      <div class="collapse" id="collapseExample">
+        <div class='search-form my-3'>
+          <%= form_with(scope: :search, url: admin_products_path, method: :get, local: true) do |f| %>
+            <div class='form-group'>
+              <%= f.label :title, Product.human_attribute_name(:title) %>
+              <%= f.text_field :title, value: @search_params[:title], class: 'form-control' %>
+            </div>
+            <div class='form-group'>
+              <%= f.label :category_id, Product.human_attribute_name(:category_name) %>
+              <%= f.select :category_id, Category.all.map { |cg| [cg.name, cg.id] }, { include_blank: '全て' }, { class: 'form-control' } %>
+            </div>
+            <div class='form-group'>
+              <%= f.label :user_id, Product.human_attribute_name(:user_name) %>
+              <%= f.select :user_id, User.all.map { |user| [user.name, user.id] }, { include_blank: '全て' }, { class: 'form-control' } %>
+            </div>
+            <div class="from-group">
+              <%= f.label :price, Product.human_attribute_name(:price) %>
+              <%= f.number_field :min_price, value: @search_params[:min_price], class: 'form-control', placeholder: '〜以上' %>
+              <%= f.number_field :max_price, value: @search_params[:max_price], class: 'form-control', placeholder: '〜以下' %>
+            </div>
+            <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
+            <%= reset_tag 'クリア', class: 'btn btn-secondary' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class='mb-3'>
+        <table class='table table-hover'>
+          <thead class='thead-default'>
+            <tr>
+              <th><%= Product.human_attribute_name(:category_name) %></th>
+              <th><%= Product.human_attribute_name(:title) %></th>
+              <th><%= Product.human_attribute_name(:price) %></th>
+              <th><%= Product.human_attribute_name(:user_name) %></th>
+              <th><%= Product.human_attribute_name(:created_at) %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+            <tr>
+              <td><%= product.category_name %></td>
+              <td><%= product.title %></td>
+              <td><%= product.price %></td>
+              <td><%= product.user_name %></td>
+              <td><%= product.created_at.strftime('%Y年%m月%d日') %></td>
+              <td>
+                <%= link_to '詳細', [:admin, product], class: 'btn btn-secondary' %>
+                <%= link_to '編集', edit_admin_product_path(product), class: 'btn btn-success' %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

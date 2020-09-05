@@ -1,0 +1,43 @@
+<div class='container mt-5'>
+  <h1>登録内容の確認</h1>
+
+  <%= form_with model: [:admin, @product], local: true do |f| %>
+    <table class='table table-hover'>
+      <tbody>
+        <tr>
+          <th><%= Product.human_attribute_name(:category_name) %></th>
+          <td><%= @product.category_name %></td>
+          <%= f.hidden_field :category_id %>
+        </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:title) %></th>
+          <td><%= @product.title %></td>
+          <%= f.hidden_field :title %>
+        </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:price) %></th>
+          <td><%= @product.price %></td>
+          <%= f.hidden_field :price %>
+        </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:introduction) %></th>
+          <td><%= @product.introduction %></td>
+          <%= f.hidden_field :introduction %>
+        </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:user_name) %></th>
+          <td><%= @product.user_name %></td>
+          <%= f.hidden_field :user_id %>
+        </tr>
+        <tr>
+          <th><%= Product.human_attribute_name(:image) %></th>
+          <td><%= image_tag @product.images.first if @product.images.attached? %></td>
+          <%= f.hidden_field :images, value: @product.images %>
+        </tr>
+      </tbody>
+    </table>
+
+    <%= f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3' %>
+    <%= f.submit '登録する', class: 'btn btn-primary' %>
+  <% end %>
+</div>
