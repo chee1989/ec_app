@@ -9,6 +9,10 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      log: ログ
+      contact: お問い合わせ
+      category: カテゴリー
+      product: 商品
     attributes:
       user:
         id: ID

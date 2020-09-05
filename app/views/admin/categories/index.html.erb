@@ -25,6 +25,10 @@
       </div>
 
       <div class='mb-3'>
+        <div class='my-2 float-right'>
+          <%= paginate @categories %>
+          <%= page_entries_info @categories %>
+        </div>
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>

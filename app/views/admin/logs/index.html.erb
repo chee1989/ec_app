@@ -29,6 +29,10 @@
       </div>
 
       <div class='mb-3'>
+        <div class='my-2 float-right'>
+          <%= paginate @logs %>
+          <%= page_entries_info @logs %>
+        </div>
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>
