@@ -18,6 +18,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 
 group :development, :test do
