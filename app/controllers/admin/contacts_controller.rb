@@ -3,6 +3,6 @@ class Admin::ContactsController < ApplicationController
   before_action :only_admin
 
   def index
-    @contacts = Contact.order(created_at: :desc)
+    @contacts = Contact.order(created_at: :desc).page(params[:page])
   end
 end

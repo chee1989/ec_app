@@ -38,6 +38,10 @@
       </div>
 
       <div class='mb-3'>
+        <div class='my-2 float-right'>
+          <%= paginate @products %>
+          <%= page_entries_info @products %>
+        </div>
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>

@@ -4,7 +4,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @search_params = product_search_params
-    @products = Product.order(created_at: :desc).search(@search_params).includes(:category)
+    @products = Product.order(created_at: :desc).search(@search_params).includes(:category).page(params[:page])
   end
 
   def show
