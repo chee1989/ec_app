@@ -45,7 +45,7 @@
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>
-              <th><%= Product.human_attribute_name(:category_name) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:category_name), 'category_id') %></th>
               <th><%= Product.human_attribute_name(:title) %></th>
               <th><%= sortTh(Product.human_attribute_name(:price), 'price') %></th>
               <th><%= Product.human_attribute_name(:user_name) %></th>
