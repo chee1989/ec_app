@@ -29,4 +29,18 @@ class Product < ApplicationRecord
   scope :user_id_is, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :min_price, -> (min) { where('price >= ?', min) if min.present? }
   scope :max_price, -> (max) { where('price <= ?', max) if max.present? }
+
+  # クラスメソッド
+  def self.csv_attributes
+    ['category_name', 'title', 'price', 'user_name', 'created_at', 'updated_at']
+  end
+
+  def self.generate_csv
+    CSV.generate(headers: true) do |csv|
+      csv << csv_attributes
+      all.each do |product|
+        csv << csv_attributes.map {|attr| product.send(attr)}
+      end
+    end
+  end
 end

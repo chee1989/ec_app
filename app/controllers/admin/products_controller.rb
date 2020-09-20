@@ -5,6 +5,11 @@ class Admin::ProductsController < ApplicationController
   def index
     @search_params = product_search_params
     @products = Product.order(params[:sort]).search(@search_params).includes(:category).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @products.generate_csv, filename: "products-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
   end
 
   def show
