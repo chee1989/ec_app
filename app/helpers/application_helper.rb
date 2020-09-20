@@ -3,4 +3,12 @@ module ApplicationHelper
     options = options.stringify_keys
     tag :input, { "type" => "reset", "value" => value }.update(options)
   end
+
+  def sortTh(title, colName)
+    if request.fullpath.include?('desc')
+      link_to title + '▼', sort: colName
+    else
+      link_to title + '▲', sort: "#{colName} desc"
+    end
+  end
 end

@@ -36,8 +36,8 @@
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>
-              <th><%= Log.human_attribute_name(:created_at) %></th>
-              <th><%= Log.human_attribute_name(:record_type) %></th>
+              <th><%= sortTh(Log.human_attribute_name(:created_at), 'created_at') %></th>
+              <th><%= sortTh(Log.human_attribute_name(:record_type), 'record_type') %></th>
               <th><%= Log.human_attribute_name(:user_id) %></th>
               <th><%= Log.human_attribute_name(:user_name) %></th>
               <th><%= Log.human_attribute_name(:user_email) %></th>

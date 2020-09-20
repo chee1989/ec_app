@@ -47,9 +47,9 @@
             <tr>
               <th><%= Product.human_attribute_name(:category_name) %></th>
               <th><%= Product.human_attribute_name(:title) %></th>
-              <th><%= Product.human_attribute_name(:price) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:price), 'price') %></th>
               <th><%= Product.human_attribute_name(:user_name) %></th>
-              <th><%= Product.human_attribute_name(:created_at) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:created_at), 'created_at') %></th>
               <th></th>
             </tr>
           </thead>

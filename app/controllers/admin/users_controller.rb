@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @search_params = user_search_params
-    @users = User.order(created_at: :desc).search(@search_params).page(params[:page])
+    @users = User.order(params[:sort]).search(@search_params).page(params[:page])
   end
 
   def show

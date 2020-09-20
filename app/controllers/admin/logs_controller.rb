@@ -4,7 +4,7 @@ class Admin::LogsController < ApplicationController
 
   def index
     @search_params = log_search_params
-    @logs = Log.order(created_at: :desc).search(@search_params).includes(:user).page(params[:page])
+    @logs = Log.order(params[:sort]).search(@search_params).includes(:user).page(params[:page])
   end
 
   private
