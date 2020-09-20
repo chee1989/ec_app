@@ -5,10 +5,10 @@ module ApplicationHelper
   end
 
   def sortTh(title, colName)
-    if request.fullpath.include?('desc')
-      link_to title + '▼', sort: colName
-    else
+    if request.fullpath.include?('asc')
       link_to title + '▲', sort: "#{colName} desc"
+    else
+      link_to title + '▼', sort: "#{colName} asc"
     end
   end
 end
