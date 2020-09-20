@@ -3,8 +3,9 @@ class Admin::LogsController < ApplicationController
   before_action :only_admin
 
   def index
+    sort = params[:sort] || 'created_at desc'
     @search_params = log_search_params
-    @logs = Log.order(params[:sort]).search(@search_params).includes(:user).page(params[:page])
+    @logs = Log.order(sort).search(@search_params).includes(:user).page(params[:page])
   end
 
   private

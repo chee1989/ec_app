@@ -3,8 +3,9 @@ class Admin::ProductsController < ApplicationController
   before_action :only_admin
 
   def index
+    sort = params[:sort] || 'created_at desc'
     @search_params = product_search_params
-    @products = Product.order(params[:sort]).search(@search_params).includes(:category).page(params[:page])
+    @products = Product.order(sort).search(@search_params).includes(:category).page(params[:page])
 
     respond_to do |format|
       format.html
