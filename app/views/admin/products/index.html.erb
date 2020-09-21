@@ -34,6 +34,9 @@
             </div>
             <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
             <%= reset_tag 'クリア', class: 'btn btn-secondary' %>
+            <button type='submit' name='format' value='csv' class='btn btn-success'>
+              絞込CSV出力
+            </button>
           <% end %>
         </div>
       </div>

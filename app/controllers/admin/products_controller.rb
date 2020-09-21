@@ -9,7 +9,7 @@ class Admin::ProductsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv {send_data @products.generate_csv, filename: "products-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+      format.csv {send_data render_to_string, filename: "products-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
     end
   end
 
