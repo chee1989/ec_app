@@ -3,8 +3,9 @@ class Admin::CategoriesController < ApplicationController
   before_action :only_admin
 
   def index
+    sort = params[:sort] || 'created_at desc'
     @search_params = category_search_params
-    @categories = Category.order(created_at: :desc).search(@search_params).page(params[:page])
+    @categories = Category.order(sort).search(@search_params).page(params[:page])
   end
 
   def show

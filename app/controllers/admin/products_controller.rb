@@ -3,8 +3,14 @@ class Admin::ProductsController < ApplicationController
   before_action :only_admin
 
   def index
+    sort = params[:sort] || 'created_at desc'
     @search_params = product_search_params
-    @products = Product.order(created_at: :desc).search(@search_params).includes(:category).page(params[:page])
+    @products = Product.order(sort).search(@search_params).includes(:category).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data render_to_string, filename: "products-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
   end
 
   def show

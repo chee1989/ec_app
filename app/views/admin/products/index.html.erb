@@ -6,6 +6,7 @@
     
       <div class='my-3'>
         <%= link_to '新規登録', new_admin_product_path, class: 'btn btn-primary' %>
+        <%= link_to 'エクスポート', admin_products_path(format: :csv), class: 'btn btn-success' %>
         <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           検索
         </button>
@@ -33,6 +34,9 @@
             </div>
             <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
             <%= reset_tag 'クリア', class: 'btn btn-secondary' %>
+            <button type='submit' name='format' value='csv' class='btn btn-success'>
+              絞込CSV出力
+            </button>
           <% end %>
         </div>
       </div>
@@ -45,11 +49,11 @@
         <table class='table table-hover'>
           <thead class='thead-default'>
             <tr>
-              <th><%= Product.human_attribute_name(:category_name) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:category_name), 'category_id') %></th>
               <th><%= Product.human_attribute_name(:title) %></th>
-              <th><%= Product.human_attribute_name(:price) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:price), 'price') %></th>
               <th><%= Product.human_attribute_name(:user_name) %></th>
-              <th><%= Product.human_attribute_name(:created_at) %></th>
+              <th><%= sortTh(Product.human_attribute_name(:created_at), 'created_at') %></th>
               <th></th>
             </tr>
           </thead>

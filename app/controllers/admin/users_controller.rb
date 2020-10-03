@@ -3,8 +3,9 @@ class Admin::UsersController < ApplicationController
   before_action :only_admin
 
   def index
+    sort = params[:sort] || 'created_at desc'
     @search_params = user_search_params
-    @users = User.order(created_at: :desc).search(@search_params).page(params[:page])
+    @users = User.order(sort).search(@search_params).page(params[:page])
   end
 
   def show
