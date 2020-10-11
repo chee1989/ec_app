@@ -30,4 +30,21 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include("を入力してください")
   end
+  # 有効なファクトリを持つこと 
+  it "has a valid factory" do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
+  # 重複したメールアドレスなら無効な状態であること
+  it "is invalid with a duplicate email address" do
+    FactoryBot.create(:user, email: 'test@example.com')
+    user = FactoryBot.build(:user, email: 'test@example.com')
+    user.valid?
+    expect(user.errors[:email]).to include("はすでに存在します")
+  end
+  # 複数のユーザーで何かする
+  it "does something with multiple users" do
+    user1 = FactoryBot.create(:user)
+    user2 = FactoryBot.create(:user)
+    expect(true).to be_truthy
+  end
 end
