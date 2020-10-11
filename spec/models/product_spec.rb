@@ -40,4 +40,35 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:price]).to include("は1より大きい値にしてください")
   end
+  describe "search title" do
+    before do
+      @product1 = FactoryBot.create(:product,
+        title: 'title1',
+        category: @category
+      )
+      @product2 = FactoryBot.create(:product,
+        title: 'name2',
+        category: @category
+      )
+      @product3 = FactoryBot.create(:product,
+        title: 'title3',
+        category: @category
+      )
+    end
+
+    # 一致するデータが見つかるとき
+    context "when a match is found" do
+      # 検索文字列に一致する商品を返すこと
+      it "returns products that match the search term" do
+        expect(Product.title_like('title')).to include(@product1, @product3)
+      end
+    end
+    # 一致するデータが1件も見つからないとき
+    context "when no match is found" do
+      # 空のコレクションを返すこと
+      it "returns an empty collection" do
+        expect(Product.title_like('message')).to be_empty
+      end
+    end
+  end
 end
