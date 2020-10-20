@@ -1,4 +1,5 @@
 <% flash.each do |key, value| %>
+  <% next if key == 'timeout' %>
   <div class='alert alert-<%= bootstrap_alert(key) %>'>
     <strong>
       <%= value %>
