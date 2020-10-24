@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'users/show'
   root 'homes#index'
   post '/', action: :create, controller: 'contacts'
+  resources :categories
+  resources :products
 
   namespace :admin do
     resources :users
