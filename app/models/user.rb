@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # バリデーション
   validates :name,  presence: true
+  validates :nick_name,  presence: true
   validates :email, presence: true, uniqueness: true
 
   # デバイス
