@@ -55,25 +55,48 @@
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         おすすめ商品
       </h3>
-      <!-- Cards -->
       <div class="container-fluid">
         <div class="row">
-            <% @products.each do |product| %>
-          <div class="col-6 col-md-4">
-            <div class="card my-2">
-              <% if product.images.attached? %>
-                <%= image_tag(product.images.first, class:"card-img-top") %>
-              <% else %>
-                <img src="/assets/sample.jpeg" class="card-img-top">
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= product.title %></h5>
-                <p class="card-text"><%= product.price %>円</p>
-                <a href="#" class="btn btn-outline-secondary">See Profile</a>
+          <% @samples.each do |sample| %>
+            <div class="col-6 col-md-4">
+              <div class="card my-2">
+                <% if sample.images.attached? %>
+                  <%= image_tag(sample.images.first, class:"card-img-top") %>
+                <% else %>
+                  <img src="/assets/sample.jpeg" class="card-img-top">
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= sample.title %></h5>
+                  <p class="card-text"><%= sample.price %>円</p>
+                  <%= link_to '商品詳細', product_path(sample), class: "btn btn-outline-secondary" %>
+                </div>
               </div>
             </div>
-          </div>
-            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        新着商品
+      </h3>
+      <div class="container-fluid">
+        <div class="row">
+          <% @new_products.each do |new_pro| %>
+            <div class="col-6 col-md-4">
+              <div class="card my-2">
+                <% if new_pro.images.attached? %>
+                  <%= image_tag(new_pro.images.first, class:"card-img-top") %>
+                <% else %>
+                  <img src="/assets/sample.jpeg" class="card-img-top">
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= new_pro.title %></h5>
+                  <p class="card-text"><%= new_pro.price %>円</p>
+                  <%= link_to '商品詳細', product_path(new_pro), class: "btn btn-outline-secondary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div><!-- /.blog-main -->
@@ -88,7 +111,7 @@
         <h4 class="font-italic">カテゴリ一覧</h4>
         <% @categories.each do |category| %>
         <ol class="list-unstyled mb-0">
-          <li><a href="#"><%= category.name %></a></li>
+          <li><%= link_to category.name, category_path(category) %>(<%= category.products.count %>個の商品)</li>
         </ol>
         <% end %>
       </div>
