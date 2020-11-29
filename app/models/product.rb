@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many_attached :images
+  has_many :favorites, dependent: :destroy
 
   # 委譲
   def user_name; user.name end
@@ -29,4 +30,9 @@ class Product < ApplicationRecord
   scope :user_id_is, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :min_price, -> (min) { where('price >= ?', min) if min.present? }
   scope :max_price, -> (max) { where('price <= ?', max) if max.present? }
+
+  # メソッド
+  def favorite_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 end

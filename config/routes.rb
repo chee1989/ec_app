@@ -2,12 +2,16 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :sessions => 'users/sessions'
   }
-  get 'users/edit'
-  get 'users/show'
+  resources :users, only: [:show, :edit, :update] do
+    get :favorites, on: :collection
+  end
   root 'homes#index'
   post '/', action: :create, controller: 'contacts'
   resources :categories
-  resources :products
+  resources :products, shallow: true do
+    resources :favorites, only: [:create, :destroy]
+    get :favorites, on: :collection
+  end
 
   namespace :admin do
     resources :users

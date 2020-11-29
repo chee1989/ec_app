@@ -1,0 +1,7 @@
+<% if current_user.own_product?(product) %>
+  <i class="fas fa-thumbs-up"></i> <%= current_user.favorites.where(product_id: product.id).count %>
+<% else %>
+  <div style='display: inline; float: right'>
+    <%= render 'products/favorite_area', product: product %>
+  </div> 
+<% end %>

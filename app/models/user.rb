@@ -12,7 +12,9 @@ class User < ApplicationRecord
   # 関連
   has_many :logs
   has_many :contacts
-  has_many :products
+  has_many :products, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_product, through: :favorites, source: :product
 
   # スコープ
   scope :search, -> (search_params) do
@@ -30,4 +32,9 @@ class User < ApplicationRecord
   scope :admin_is, -> (admin) { where(admin: admin) if admin.present? }
   scope :created_at_from, -> (from) { where('created_at >= ?', from) if from.present? }
   scope :created_at_to, -> (to) { where('created_at <= ?', to) if to.present? }
+
+  # メソッド
+  def own_product?(product)
+    self.id == product.user_id
+  end
 end
