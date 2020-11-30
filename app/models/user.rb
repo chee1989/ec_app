@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_product, through: :favorites, source: :product
+  has_many :likes, dependent: :destroy
+  has_many :liked_products, through: :likes, source: :product
 
   # スコープ
   scope :search, -> (search_params) do

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products, shallow: true do
     resources :favorites, only: [:create, :destroy]
     get :favorites, on: :collection
+    resources :likes, only: [:create, :destroy]
   end
 
   namespace :admin do

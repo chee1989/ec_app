@@ -11,6 +11,8 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many_attached :images
   has_many :favorites, dependent: :destroy
+  has_many :likes
+  has_many :liked_users, through: :likes, source: :user
 
   # 委譲
   def user_name; user.name end
@@ -34,5 +36,9 @@ class Product < ApplicationRecord
   # メソッド
   def favorite_by?(user)
     favorites.where(user_id: user.id).exists?
+  end
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end
