@@ -1,0 +1,9 @@
+<% if product.liked_by?(current_user) %>
+   <%= link_to(like_path(product), method: :delete, remote: true, class: "btn btn-lg btn-outline-secondary", id: :"like-button-#{product.id}") do %>
+    <i class="fas fa-heart"></i> <%= product.likes.count %>
+   <% end %>
+<% else %>
+   <%= link_to(product_likes_path(product), method: :post, remote: true, class: "btn btn-lg btn-outline-secondary", id: :"like-button-#{product.id}") do %>
+    <i class="far fa-heart"></i> <%= product.likes.count %>
+   <% end %>
+<% end %>

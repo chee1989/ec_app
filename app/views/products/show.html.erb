@@ -37,6 +37,14 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="row">
+    <div class="col text-center">
+      <div id="like-btn-<%= @product.id %>"><%= render 'likes/like', product: @product %>
+      <%= render @product %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <link href='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css' rel='stylesheet'>

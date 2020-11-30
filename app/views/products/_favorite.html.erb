@@ -1,0 +1,3 @@
+<%= link_to favorite_path(product.id), method: :delete, id: "js-favorite-button-for-product-#{product.id}" do %>
+  <button class="btn btn-lg btn-outline-secondary"><i class="fas fa-thumbs-up"></i> <span>お気に入りから外す</span></button>
+<% end %>
