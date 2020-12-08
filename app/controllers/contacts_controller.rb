@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     if @contact.save
       redirect_to root_path, notice: '送信しました。'
     else
-      render :home, notice: '送信できませんでした。'
+      redirect_to root_path, alert: '送信できませんでした。'
     end
   end
 
