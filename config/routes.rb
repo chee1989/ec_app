@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'homes#index'
   post '/', action: :create, controller: 'contacts'
   resources :categories
+  post '/products/:id', action: :create, controller: 'products'
   resources :products, shallow: true do
     resources :favorites, only: [:create, :destroy]
     get :favorites, on: :collection
