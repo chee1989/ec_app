@@ -5,7 +5,7 @@ class Admin::ProductsController < ApplicationController
   def index
     sort = params[:sort] || 'created_at desc'
     @search_params = product_search_params
-    @products = Product.order(sort).search(@search_params).includes(:category).page(params[:page])
+    @products = Product.order(sort).search(@search_params).includes([:category, :user]).page(params[:page])
 
     respond_to do |format|
       format.html

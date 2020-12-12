@@ -1,6 +1,6 @@
 require "csv"
 
-column_names = %w(category_name title price user_name created_at updated_at)
+column_names = %w(id category_name title price user_name created_at updated_at)
 
 CSV.generate(headers: true) do |csv|
   csv << column_names
