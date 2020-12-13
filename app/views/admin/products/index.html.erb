@@ -7,12 +7,22 @@
       <div class='my-3'>
         <%= link_to '新規登録', new_admin_product_path, class: 'btn btn-primary' %>
         <%= link_to 'エクスポート', admin_products_path(format: :csv), class: 'btn btn-success' %>
-        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#import_collapse" aria-expanded="false" aria-controls="import_collapse">
+          インポート
+        </button>
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="search_collapse">
           検索
         </button>
       </div>
 
-      <div class="collapse" id="collapseExample">
+      <div class="collapse my-5" id="import_collapse">
+        <%= form_tag import_admin_products_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "処理開始", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+
+      <div class="collapse" id="search_collapse">
         <div class='search-form my-3'>
           <%= form_with(scope: :search, url: admin_products_path, method: :get, local: true) do |f| %>
             <div class='form-group'>
