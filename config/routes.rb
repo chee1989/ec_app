@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :products do
       post :confirm, action: :confirm_new, on: :new
+      post :import, on: :collection
     end
     root 'homes#index'
   end

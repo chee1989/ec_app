@@ -33,6 +33,48 @@ class Product < ApplicationRecord
   scope :min_price, -> (min) { where('price >= ?', min) if min.present? }
   scope :max_price, -> (max) { where('price <= ?', max) if max.present? }
 
+  # クラスメソッド
+  def self.csv_format_check(file)
+    errors = []
+    CSV.foreach(file.path, headers: true).with_index(1) do |row, index|
+      user = User.find_by(name: row["出品者名"])
+      category = Category.find_by(name: row["カテゴリ名"])
+      errors << "#{index}行目 出品者名が不正です" if user.blank? # 出品者名が不正
+      errors << "#{index}行目 カテゴリ名が不正です" if category.blank? # カテゴリ名が不正
+
+      if row["ID"].present?
+        product = find_by(id: row["ID"])
+        errors << "#{index}行目 IDが不正です" if product.blank? # IDが不正
+      else
+        u_id = user.id if user.present?
+        c_id = category.id if category.present?
+        product = new(title: row["商品名"], price: row["値段"], user_id: u_id, category_id: c_id)
+        errors << "#{index}行目 新規作成できませんでした" if product.invalid? # 新規作成データが不正
+      end
+    end
+    errors
+  end
+
+  def self.import_save(file)
+    new_count = 0
+    update_count = 0
+    CSV.foreach(file.path, headers: true) do |row|
+      user = User.find_by(name: row["出品者名"])
+      category = Category.find_by(name: row["カテゴリ名"])
+
+      if row["ID"].present?
+        product = find_by(id: row["ID"])
+        product.update(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
+        update_count += 1
+      else
+        product = new(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
+        product.save!
+        new_count += 1
+      end
+    end
+    "新規作成：#{new_count}件、更新：#{update_count}件"
+  end
+
   # メソッド
   def favorite_by?(user)
     favorites.where(user_id: user.id).exists?

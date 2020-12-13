@@ -5,11 +5,24 @@ class Admin::ProductsController < ApplicationController
   def index
     sort = params[:sort] || 'created_at desc'
     @search_params = product_search_params
-    @products = Product.order(sort).search(@search_params).includes(:category).page(params[:page])
+    @products = Product.order(sort).search(@search_params).includes([:category, :user]).page(params[:page])
 
     respond_to do |format|
       format.html
       format.csv {send_data render_to_string, filename: "products-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
+  end
+
+  def import
+    if params[:file].present?
+      if Product.csv_format_check(params[:file]).present?
+        redirect_to admin_products_path, alert: "エラーが発生したため処理を中断しました。#{Product.csv_format_check(params[:file])}"
+      else
+        Product.import_save(params[:file])
+        redirect_to admin_products_path, notice: "インポート処理が完了しました。#{Product.import_save(params[:file])}"
+      end
+    else
+      redirect_to admin_products_path, alert: "インポート処理が失敗しました。ファイルを選択してください。"
     end
   end
 
