@@ -63,7 +63,7 @@ class Product < ApplicationRecord
       category = Category.find_by(name: row["カテゴリ名"])
 
       if row["ID"].present?
-        product = find_by(id: row["ID"])
+        product = find(row["ID"])
         product.update(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
         update_count += 1
       else
