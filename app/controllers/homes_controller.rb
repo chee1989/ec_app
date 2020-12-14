@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   def index
-    @products = Product.all.includes(:user)
-    @categories = Category.all
+    @products = Product.with_attached_images.includes(:user, :category, :likes)
+    @categories = Category.includes(:products)
     @samples = @products.sample(6)
     @new_products = @products.order(created_at: :desc).first(6)
   end

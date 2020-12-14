@@ -70,7 +70,7 @@
                   <p class="card-text"><%= sample.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(sample), class: "btn btn-outline-secondary mr-2" %>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> <%= sample.likes.count %></button>
+                    <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> <%= sample.likes.size %></button>
                   </div>
                 </div>
               </div>
@@ -97,7 +97,7 @@
                   <p class="card-text"><%= new_pro.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(new_pro), class: "btn btn-outline-secondary mr-2" %>
-                    <div class="btn btn-outline-secondary mr-2"><i class="fas fa-heart"></i> <%= new_pro.likes.count %></div>
+                    <div class="btn btn-outline-secondary mr-2"><i class="fas fa-heart"></i> <%= new_pro.likes.size %></div>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@
         <h4 class="font-italic">カテゴリ一覧</h4>
         <% @categories.each do |category| %>
         <ol class="list-unstyled mb-0">
-          <li><%= link_to category.name, category_path(category) %>(<%= category.products.count %>個の商品)</li>
+          <li><%= link_to category.name, category_path(category) %>(<%= category.products.size %>個の商品)</li>
         </ol>
         <% end %>
       </div>

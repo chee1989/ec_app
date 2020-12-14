@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @products = Product.all.includes(:user)
+    @products = Product.with_attached_images.includes(:user, :category)
   end
 
   def show
@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def favorites
-    @products = current_user.favorite_products.includes(:user)
+    @products = current_user.favorite_products.includes(:user, :category)
   end
 
   def new

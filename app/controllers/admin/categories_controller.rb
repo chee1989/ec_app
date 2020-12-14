@@ -5,7 +5,7 @@ class Admin::CategoriesController < ApplicationController
   def index
     sort = params[:sort] || 'created_at desc'
     @search_params = category_search_params
-    @categories = Category.order(sort).search(@search_params).page(params[:page])
+    @categories = Category.includes(:products).order(sort).search(@search_params).page(params[:page])
   end
 
   def show
