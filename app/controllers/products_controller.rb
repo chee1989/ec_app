@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @products = Product.with_attached_images.includes(:user, :category)
+    @search_params = product_search_params
+    @products = Product.with_attached_images.includes(:user, :category).search(@search_params).page(params[:page])
   end
 
   def show
@@ -34,5 +35,10 @@ class ProductsController < ApplicationController
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to product_path(@product)
+  end
+
+  private
+  def product_search_params
+    params.fetch(:search, {}).permit(:title, :min_price, :max_price, :category_id, :user_id)
   end
 end

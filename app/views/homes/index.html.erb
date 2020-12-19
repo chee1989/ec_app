@@ -47,9 +47,20 @@
   <%= render 'form' %>
 <% end %>
 
-<br>
-
 <main role="main" class="container-fluid p-5">
+  <div class='search-form my-3'>
+    <%= form_with(scope: :search, url: products_path, method: :get, local: true) do |f| %>
+      <div class='form-group'>
+        <%= f.label :title, Product.human_attribute_name(:title) %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :category_id, Product.human_attribute_name(:category_name) %>
+        <%= f.select :category_id, Category.all.map { |cg| [cg.name, cg.id] }, { include_blank: '全て' }, { class: 'form-control' } %>
+      </div>
+      <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
