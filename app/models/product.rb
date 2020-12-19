@@ -58,21 +58,27 @@ class Product < ApplicationRecord
   def self.import_save(file)
     new_count = 0
     update_count = 0
+    nochange_count = 0
     CSV.foreach(file.path, headers: true) do |row|
       user = User.find_by(name: row["出品者名"])
       category = Category.find_by(name: row["カテゴリ名"])
 
       if row["ID"].present?
         product = find(row["ID"])
-        product.update(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
-        update_count += 1
+        product.assign_attributes(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
+        if product.changed?
+          product.save!
+          update_count += 1
+        else
+          nochange_count += 1
+        end
       else
         product = new(id: row["ID"], title: row["商品名"], price: row["値段"], user_id: user.id, category_id: category.id)
         product.save!
         new_count += 1
       end
     end
-    "新規作成：#{new_count}件、更新：#{update_count}件"
+    "新規作成：#{new_count}件、更新：#{update_count}件、無変更：#{nochange_count}件"
   end
 
   # メソッド

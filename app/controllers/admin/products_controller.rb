@@ -18,8 +18,8 @@ class Admin::ProductsController < ApplicationController
       if Product.csv_format_check(params[:file]).present?
         redirect_to admin_products_path, alert: "エラーが発生したため処理を中断しました。#{Product.csv_format_check(params[:file])}"
       else
-        Product.import_save(params[:file])
-        redirect_to admin_products_path, notice: "インポート処理が完了しました。#{Product.import_save(params[:file])}"
+        message = Product.import_save(params[:file])
+        redirect_to admin_products_path, notice: "インポート処理が完了しました。#{message}"
       end
     else
       redirect_to admin_products_path, alert: "インポート処理が失敗しました。ファイルを選択してください。"
