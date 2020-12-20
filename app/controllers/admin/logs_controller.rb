@@ -1,6 +1,7 @@
 class Admin::LogsController < ApplicationController
   include Admin::UserHelper
   before_action :only_admin
+  layout 'admin/admin_front'
 
   def index
     sort = params[:sort] || 'created_at desc'

@@ -81,7 +81,7 @@
                   <p class="card-text"><%= sample.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(sample), class: "btn btn-outline-secondary mr-2" %>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> <%= sample.likes.size %></button>
+                    <div id="like-btn-<%= sample.id %>"><%= render 'likes/like', product: sample %></div>
                   </div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
                   <p class="card-text"><%= new_pro.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(new_pro), class: "btn btn-outline-secondary mr-2" %>
-                    <div class="btn btn-outline-secondary mr-2"><i class="fas fa-heart"></i> <%= new_pro.likes.size %></div>
+                    <div id="like-btn-<%= new_pro.id %>"><%= render 'likes/like', product: new_pro %></div>
                   </div>
                 </div>
               </div>
