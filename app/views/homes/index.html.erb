@@ -47,9 +47,20 @@
   <%= render 'form' %>
 <% end %>
 
-<br>
-
 <main role="main" class="container-fluid p-5">
+  <div class='search-form my-3'>
+    <%= form_with(scope: :search, url: products_path, method: :get, local: true) do |f| %>
+      <div class='form-group'>
+        <%= f.label :title, Product.human_attribute_name(:title) %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :category_id, Product.human_attribute_name(:category_name) %>
+        <%= f.select :category_id, Category.all.map { |cg| [cg.name, cg.id] }, { include_blank: '全て' }, { class: 'form-control' } %>
+      </div>
+      <%= f.submit '検索する', class: 'btn btn-secondary my-3'%>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -70,7 +81,7 @@
                   <p class="card-text"><%= sample.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(sample), class: "btn btn-outline-secondary mr-2" %>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> <%= sample.likes.count %></button>
+                    <div id="like-btn-<%= sample.id %>"><%= render 'likes/like', product: sample %></div>
                   </div>
                 </div>
               </div>
@@ -97,7 +108,7 @@
                   <p class="card-text"><%= new_pro.price %>円</p>
                   <div class="row">
                     <%= link_to '商品詳細', product_path(new_pro), class: "btn btn-outline-secondary mr-2" %>
-                    <div class="btn btn-outline-secondary mr-2"><i class="fas fa-heart"></i> <%= new_pro.likes.count %></div>
+                    <div id="like-btn-<%= new_pro.id %>"><%= render 'likes/like', product: new_pro %></div>
                   </div>
                 </div>
               </div>
@@ -117,7 +128,7 @@
         <h4 class="font-italic">カテゴリ一覧</h4>
         <% @categories.each do |category| %>
         <ol class="list-unstyled mb-0">
-          <li><%= link_to category.name, category_path(category) %>(<%= category.products.count %>個の商品)</li>
+          <li><%= link_to category.name, category_path(category) %>(<%= category.products.size %>個の商品)</li>
         </ol>
         <% end %>
       </div>

@@ -1,11 +1,12 @@
 class Admin::CategoriesController < ApplicationController
   include Admin::UserHelper
   before_action :only_admin
+  layout 'admin/admin_front'
 
   def index
     sort = params[:sort] || 'created_at desc'
     @search_params = category_search_params
-    @categories = Category.order(sort).search(@search_params).page(params[:page])
+    @categories = Category.includes(:products).order(sort).search(@search_params).page(params[:page])
   end
 
   def show
