@@ -1,0 +1,2 @@
+$('#sample_lists').append("<%= escape_javascript(render 'sample_list', object: @samples) %>");
+$("#sample_more").replaceWith("<%= escape_javascript(link_to_next_page(@samples, 'もっと見る', remote: true, params: { type: :sample }, id: 'sample_more', class: 'btn btn-outline-primary')) %>");

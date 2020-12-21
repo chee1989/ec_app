@@ -1,0 +1,23 @@
+<div class="row">
+  <% @samples.each do |sample| %>
+    <div class="col-6 col-md-4">
+      <div class="card my-2">
+        <% if sample.images.attached? %>
+          <%= image_tag(sample.images.first, class:"card-img-top") %>
+        <% else %>
+          <img src="/assets/sample.jpeg" class="card-img-top">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= sample.title %></h5>
+          <p class="card-text"><%= sample.price %>円</p>
+          <div class="row">
+            <%= link_to '商品詳細', product_path(sample), class: "btn btn-outline-secondary mr-2" %>
+            <% if user_signed_in? %>
+              <div id="like-btn-<%= sample.id %>"><%= render 'likes/like', product: sample %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
