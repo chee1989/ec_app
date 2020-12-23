@@ -12,9 +12,9 @@
           <p class="card-text"><%= like_pro.price %>円</p>
           <div class="row">
             <%= link_to '商品詳細', product_path(like_pro), class: "btn btn-outline-secondary mr-2" %>
-            <% if user_signed_in? %>
-              <div id="like-btn-<%= like_pro.id %>"><%= render 'likes/like', product: like_pro %></div>
-            <% end %>
+            <div class="btn btn-lg btn-outline-secondary">
+              <i class="fas fa-heart"></i> <%= like_pro.likes.count %>
+            </div>
           </div>
         </div>
       </div>
