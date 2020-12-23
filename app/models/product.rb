@@ -32,7 +32,7 @@ class Product < ApplicationRecord
   scope :user_id_is, -> (user_id) { where(user_id: user_id) if user_id.present? }
   scope :min_price, -> (min) { where('price >= ?', min) if min.present? }
   scope :max_price, -> (max) { where('price <= ?', max) if max.present? }
-  scope :like_sort_desc, -> { joins(:likes).group(:product_id).order(Arel.sql('count(likes.id) desc')) }
+  scope :like_sort_desc, -> { joins(:user, :likes).group(:product_id).order(Arel.sql('count(likes.id) desc')) }
 
   # クラスメソッド
   def self.csv_format_check(file)
