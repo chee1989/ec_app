@@ -35,14 +35,18 @@
         <th><%= Product.human_attribute_name(:created_at) %></th>
         <td><%= @product.created_at.strftime('%Y年%m月%d日') %></td>
       </tr>
+      <tr>
+        <th>いいね</th>
+        <td><div id="like-btn-<%= @product.id %>"><%= render 'likes/like', product: @product %></div>
+      </tr>
+      <tr>
+        <th>お気に入り</th>
+        <td><%= render @product %></td></div>
+      </tr>
     </tbody>
   </table>
-
   <div class="row">
     <div class="col text-center">
-      <div id="like-btn-<%= @product.id %>"><%= render 'likes/like', product: @product %>
-      <%= render @product %>
-      </div>
       <%= render :partial => "new" %>
     </div>
   </div>
