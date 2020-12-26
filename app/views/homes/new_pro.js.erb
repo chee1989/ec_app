@@ -1,0 +1,2 @@
+$('#new_pro_lists').append("<%= escape_javascript(render 'new_pro_list', object: @new_products) %>");
+$("#new_pro_more").replaceWith("<%= escape_javascript(link_to_next_page(@new_products, 'もっと見る', remote: true, params: { type: :new_pro }, id: 'new_pro_more', class: 'btn btn-outline-primary')) %>");

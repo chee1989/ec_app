@@ -1,5 +1,5 @@
 <% flash.each do |key, value| %>
-  <% next if value == 'true' %>
+  <% next if value == "セッションがタイムアウトしました。もう一度ログインしてください。" %>
   <% if key.present? %>
     <div class='alert alert-<%= bootstrap_alert(key) %>'>
       <strong>
