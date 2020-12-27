@@ -25,7 +25,7 @@ RSpec.describe Favorite, type: :model do
     favo.valid?
     expect(favo.errors[:product]).to include("を入力してください")
   end
-  # 重複したいいねは無効な状態であること
+  # 重複したお気に入りは無効な状態であること
   it "is invalid with a duplicate favorites" do
     FactoryBot.create(:favorite, user_id: @user.id, product_id: @product.id)
     favo = FactoryBot.build(:favorite, user_id: @user.id, product_id: @product.id)
