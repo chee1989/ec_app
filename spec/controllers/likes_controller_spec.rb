@@ -9,7 +9,6 @@ RSpec.describe LikesController, type: :controller do
         @category = FactoryBot.create(:category)
         @product = FactoryBot.create(:product, user_id: @user.id, category_id: @category.id)
         @like = FactoryBot.create(:like, user_id: @user.id, product_id: @product.id)
-        sign_in @user
       end
       # いいねできること
       # it "adds a like" do

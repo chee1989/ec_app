@@ -9,14 +9,12 @@ RSpec.feature "Products", type: :feature do
     visit root_path
     visit "/products/#{product.id}"
     expect(page).to have_content "アカウント登録もしくはログインしてください"
-    click_link "ログイン"
-    fill_in "Eメール", with: user.email
-    fill_in "パスワード", with: user.password
-    find(".btn.btn-lg.btn-primary.my-3").click
+    login(user)
+    expect(page).to have_content 'ログインしました。'
     visit root_path
-    # visit "/products/#{product.id}"
     expect(page).to have_content "商品詳細"
-    # click_link "商品詳細"
-    # expect(page).to have_content "お気に入りする"
+    click_link "商品詳細"
+    # visit "/products/#{product.id}"
+    expect(page).to have_content "お気に入りする"
   end
 end
