@@ -26,4 +26,8 @@ Rails.application.routes.draw do
     end
     root 'homes#index'
   end
+
+  scope '/api' do
+    get '/products', to: 'products#index', defaults: { format: :json }
+  end
 end
