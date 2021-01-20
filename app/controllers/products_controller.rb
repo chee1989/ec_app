@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   def index
     @search_params = product_search_params
     @products = Product.with_attached_images.includes(:user, :category).search(@search_params).page(params[:page])
+    # render :json => @products
+    # render json: { status: 'SUCCESS', message: 'Loaded posts', data: @products }
   end
 
   def show
